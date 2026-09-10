@@ -21,4 +21,7 @@ class Page < ApplicationRecord
   has_many_attached :page_attachments
 
   validates :title, :body, presence: true
+
+  # Track and store changes to pages
+  has_paper_trail
 end
