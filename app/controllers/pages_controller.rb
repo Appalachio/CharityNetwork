@@ -8,6 +8,10 @@ class PagesController < ApplicationController
 
   # GET /pages/1 or /pages/1.json
   def show
+    # Redirect to the latest version of the page slug if an old slug was used
+    if request.path != page_path(@page)
+      redirect_to(@page, status: :moved_permanently, notice: "The page you requested (#{request.url}) is now accessible at this current url (#{page_url(@page)}). You have been automatically redirected")
+    end
   end
 
   # GET /pages/new
@@ -17,6 +21,10 @@ class PagesController < ApplicationController
 
   # GET /pages/1/edit
   def edit
+    # Redirect to the latest version of the page slug if an old slug was used
+    if request.path != edit_page_path(@page)
+      redirect_to(edit_page_path(@page), status: :moved_permanently, notice: "The page you requested (#{request.url}) is now accessible at this current url (#{page_url(@page)}). You have been automatically redirected")
+    end
   end
 
   # POST /pages or /pages.json
@@ -60,11 +68,11 @@ class PagesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_page
-      @page = Page.find(params.expect(:id))
+      @page = Page.friendly.find(params.expect(:id))
     end
 
     # Only allow a list of trusted parameters through.
     def page_params
-      params.expect(page: [ :title, :subtitle, :body, :published_at ])
+      params.expect(page: [ :title, :subtitle, :body, :published_at, page_attachments: [] ])
     end
 end

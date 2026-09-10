@@ -7,3 +7,15 @@ ActiveStorage::Blob:
   enabled: false
 ActiveStorage::VariantRecord:
   enabled: false
+
+# Ignore false positives from the FriendlyID and PaperTrail gems
+Page:
+  slug:
+    NullConstraintChecker:
+      enabled: false
+  index_pages_on_slug:
+    UniqueIndexChecker:
+      enabled: false
+  versions:
+    ForeignKeyTypeChecker:
+      enabled: false

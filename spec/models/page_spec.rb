@@ -8,7 +8,7 @@ require 'rails_helper'
 #  id           :bigint           not null, primary key
 #  archived_at  :datetime
 #  published_at :datetime
-#  slug         :text
+#  slug         :text             not null
 #  subtitle     :text
 #  title        :text             not null
 #  created_at   :datetime         not null
@@ -16,6 +16,7 @@ require 'rails_helper'
 #
 # Indexes
 #
+#  index_pages_on_slug   (slug) UNIQUE
 #  index_pages_on_title  (title)
 #
 RSpec.describe Page, type: :model do

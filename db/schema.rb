@@ -68,10 +68,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_10_165747) do
     t.datetime "archived_at"
     t.datetime "created_at", null: false
     t.datetime "published_at"
-    t.text "slug"
+    t.text "slug", null: false
     t.text "subtitle"
     t.text "title", null: false
     t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_pages_on_slug", unique: true
     t.index ["title"], name: "index_pages_on_title"
   end
 
