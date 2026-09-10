@@ -42,5 +42,8 @@ module CharityNetwork
     # Always store all datetimes in UTC timezone in the database
     config.time_zone = "UTC"
     config.active_record.default_timezone = :utc
+
+    # Crash if the environment specific encryption key is not present
+    config.require_master_key = true
   end
 end

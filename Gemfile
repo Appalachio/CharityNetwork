@@ -1,6 +1,8 @@
 source "https://rubygems.org"
 
 gem "rails", "~> 8.1.3", ">= 8.1.3.1"
+# https://github.com/rails/rails/issues/58685
+gem "json", "< 3"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft", "~> 1.3"
 # Use postgresql as the database for Active Record
@@ -37,6 +39,9 @@ gem "thruster", "~> 0.1", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem "image_processing", "~> 1.2"
+
+# Mission Control Jobs adds a dashboard to monitor and control background jobs
+gem "mission_control-jobs", "~> 1.3"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
