@@ -67,4 +67,7 @@ group :development do
   # Send emails directly to the developer's browser with Letter Opener
   gem "letter_opener", "~> 1.10"
   gem "letter_opener_web", "~> 3.0"
+
+  # Add a comment with the database schema to the top of relevant files
+  gem "annotaterb", "~> 4.24"
 end
