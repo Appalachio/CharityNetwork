@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_09_10_164956) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_10_165747) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pgcrypto"
@@ -51,6 +51,17 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_10_164956) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.datetime "created_at"
+    t.text "scope"
+    t.text "slug", null: false
+    t.bigint "sluggable_id", null: false
+    t.text "sluggable_type"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+    t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
   create_table "pages", force: :cascade do |t|

@@ -46,6 +46,9 @@ gem "mission_control-jobs", "~> 1.3"
 # Track and store changes to models with Paper Trail
 gem "paper_trail", "~> 17.0"
 
+# Use FriendlyID to customize a models URL slug
+gem "friendly_id", "~> 5.7"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", "~> 1.11", platforms: %i[ mri windows ], require: "debug/prelude"

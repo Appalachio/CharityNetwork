@@ -141,6 +141,8 @@ GEM
     ffi (1.17.4-x86_64-linux-musl)
     foreman (0.90.0)
       thor (~> 1.4)
+    friendly_id (5.7.0)
+      activerecord (>= 4.0.0)
     fugit (1.13.0)
       et-orbi (~> 1.4)
       raabro (~> 1.4)
@@ -456,6 +458,7 @@ DEPENDENCIES
   factory_bot_rails (~> 6.5)
   faker (~> 3.8)
   foreman (~> 0.90)
+  friendly_id (~> 5.7)
   image_processing (~> 1.2)
   importmap-rails (~> 2.2)
   jbuilder (~> 2.15)
@@ -531,6 +534,7 @@ CHECKSUMS
   ffi (1.17.4-x86_64-linux-gnu) sha256=9d3db14c2eae074b382fa9c083fe95aec6e0a1451da249eab096c34002bc752d
   ffi (1.17.4-x86_64-linux-musl) sha256=3fdf9888483de005f8ef8d1cf2d3b20d86626af206cbf780f6a6a12439a9c49e
   foreman (0.90.0) sha256=ff675e2d47b607ac58714a6d4ac3e1ee8f06f41d8db084531c31961e2c3f117c
+  friendly_id (5.7.0) sha256=b8994416ebaceebc7c60bc556e84ef32a3a663e2e582eb04c429216cc98de4c4
   fugit (1.13.0) sha256=a4f093fce740da52f216740a5041e2a594ea763cdb89e8b2754ca4399634ab18
   globalid (1.4.0) sha256=037f12fbf1d9d7a014d501c2d5c77356fd4ddd96d7a7991d6700bba96706f427
   i18n (1.15.2) sha256=00f9eb62412fe593b2a65a97daa75300d37abb8f7202ec748e94b6d46a9dd1b5
