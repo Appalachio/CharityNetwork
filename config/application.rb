@@ -38,5 +38,9 @@ module CharityNetwork
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    # Always store all datetimes in UTC timezone in the database
+    config.time_zone = "UTC"
+    config.active_record.default_timezone = :utc
   end
 end
