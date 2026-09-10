@@ -63,4 +63,8 @@ group :development do
 
   # Use Foreman to run all necessary services while developing. See bin/dev and Procfile.dev files
   gem "foreman", "~> 0.90"
+
+  # Send emails directly to the developer's browser with Letter Opener
+  gem "letter_opener", "~> 1.10"
+  gem "letter_opener_web", "~> 3.0"
 end
