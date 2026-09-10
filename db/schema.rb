@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_09_10_154751) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_10_164956) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pgcrypto"
@@ -62,6 +62,17 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_10_154751) do
     t.text "title", null: false
     t.datetime "updated_at", null: false
     t.index ["title"], name: "index_pages_on_title"
+  end
+
+  create_table "versions", force: :cascade do |t|
+    t.datetime "created_at"
+    t.text "event", null: false
+    t.bigint "item_id", null: false
+    t.text "item_type", null: false
+    t.text "object"
+    t.text "object_changes"
+    t.bigint "whodunnit"
+    t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

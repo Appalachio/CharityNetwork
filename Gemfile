@@ -43,6 +43,9 @@ gem "image_processing", "~> 1.2"
 # Mission Control Jobs adds a dashboard to monitor and control background jobs
 gem "mission_control-jobs", "~> 1.3"
 
+# Track and store changes to models with Paper Trail
+gem "paper_trail", "~> 17.0"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", "~> 1.11", platforms: %i[ mri windows ], require: "debug/prelude"
