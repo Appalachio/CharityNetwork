@@ -62,6 +62,9 @@ group :development, :test do
   gem "factory_bot_rails", "~> 6.5"
   # Use Faker to generate test data
   gem "faker", "~> 3.8"
+
+  # Use Database Consistency to keep the database and application constraints in sync
+  gem "database_consistency", "~> 3.0", require: false
 end
 
 group :development do
