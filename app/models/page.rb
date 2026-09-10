@@ -8,10 +8,17 @@
 #  published_at :datetime
 #  slug         :text
 #  subtitle     :text
-#  title        :text
+#  title        :text             not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #
+# Indexes
+#
+#  index_pages_on_title  (title)
+#
 class Page < ApplicationRecord
   has_rich_text :body
+  has_many_attached :page_attachments
+
+  validates :title, :body, presence: true
 end

@@ -5,16 +5,13 @@ RSpec.describe "pages/show", type: :view do
     assign(:page, Page.create!(
       title: "MyText",
       subtitle: "MyText",
-      body: nil,
-      slug: "MyText"
+      body: "MyPage",
     ))
   end
 
   it "renders attributes in <p>" do
     render
     expect(rendered).to match(/MyText/)
-    expect(rendered).to match(/MyText/)
-    expect(rendered).to match(//)
-    expect(rendered).to match(/MyText/)
+    expect(rendered).to match(/MyPage/)
   end
 end

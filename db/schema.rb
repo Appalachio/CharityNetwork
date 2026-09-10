@@ -59,8 +59,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_10_154751) do
     t.datetime "published_at"
     t.text "slug"
     t.text "subtitle"
-    t.text "title"
+    t.text "title", null: false
     t.datetime "updated_at", null: false
+    t.index ["title"], name: "index_pages_on_title"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

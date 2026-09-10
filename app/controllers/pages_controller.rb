@@ -65,6 +65,6 @@ class PagesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def page_params
-      params.expect(page: [ :title, :subtitle, :body, :slug, :published_at, :archived_at ])
+      params.expect(page: [ :title, :subtitle, :body, :published_at ])
     end
 end

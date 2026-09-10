@@ -5,8 +5,7 @@ RSpec.describe "pages/edit", type: :view do
     Page.create!(
       title: "MyText",
       subtitle: "MyText",
-      body: nil,
-      slug: "MyText"
+      body: "MyPage",
     )
   }
 
@@ -23,8 +22,6 @@ RSpec.describe "pages/edit", type: :view do
       assert_select "textarea[name=?]", "page[subtitle]"
 
       assert_select "input[name=?]", "page[body]"
-
-      assert_select "textarea[name=?]", "page[slug]"
     end
   end
 end

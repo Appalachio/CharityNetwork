@@ -10,9 +10,13 @@ require 'rails_helper'
 #  published_at :datetime
 #  slug         :text
 #  subtitle     :text
-#  title        :text
+#  title        :text             not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#
+# Indexes
+#
+#  index_pages_on_title  (title)
 #
 RSpec.describe Page, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"
