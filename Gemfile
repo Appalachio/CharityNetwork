@@ -65,6 +65,9 @@ group :development, :test do
 
   # Use Database Consistency to keep the database and application constraints in sync
   gem "database_consistency", "~> 3.0", require: false
+
+  # Use ERB Lint to lint .html.erb files
+  gem "erb_lint", "~> 0.9", require: false
 end
 
 group :development do

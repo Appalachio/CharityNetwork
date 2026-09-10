@@ -6,4 +6,5 @@ bin/bundler-audit --update
 bin/importmap audit
 bin/rubocop
 bundle exec database_consistency
+bundle exec erb_lint --lint-all
 bundle exec rspec
