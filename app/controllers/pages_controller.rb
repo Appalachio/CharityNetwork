@@ -65,6 +65,28 @@ class PagesController < ApplicationController
     end
   end
 
+  # PUT /pages/1/archive or /pages/1/archive.json
+  # Soft deletes the page
+  def archive
+    @page.archive
+
+    respond_to do |format|
+      format.html { redirect_to @page, notice: "Page was successfully archived. You can restore it at any time." }
+      format.json { render :show, status: :ok, location: @page }
+    end
+  end
+
+  # PUT /pages/1/restore or /pages/1/restore.json
+  # Restores the page from archive
+  def restore
+    @page.restore
+
+    respond_to do |format|
+      format.html { redirect_to @page, notice: "Page was successfully restored." }
+      format.json { render :show, status: :ok, location: @page }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_page

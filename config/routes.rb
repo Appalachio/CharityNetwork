@@ -1,6 +1,10 @@
 # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do
-  resources :pages
+  # Content management system style pages
+  resources :pages do
+    put :archive, on: :member
+    put :restore, on: :member
+  end
 
   # View emails sent in development directly in the browser
   mount LetterOpenerWeb::Engine, at: "/admin/emails" if Rails.env.development?

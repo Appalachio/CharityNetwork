@@ -26,6 +26,9 @@ class Page < ApplicationRecord
   # Track and store changes to pages
   has_paper_trail
 
+  # Soft delete pages
+  include Archivable
+
   # Prefer the page's title, or title and subtitle for its URL slug
   extend FriendlyId
   friendly_id :slug_candidates
