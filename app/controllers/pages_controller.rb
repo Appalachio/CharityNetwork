@@ -3,7 +3,8 @@ class PagesController < ApplicationController
 
   # GET /pages or /pages.json
   def index
-    @pages = Page.all
+    # Only show pages that have not been archived and are published
+    @pages = Page.active.published
   end
 
   # GET /pages/1 or /pages/1.json

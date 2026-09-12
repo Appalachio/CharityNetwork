@@ -29,6 +29,9 @@ class Page < ApplicationRecord
   # Soft delete pages
   include Archivable
 
+  # Publish/unpublish pages
+  include Publishable
+
   # Prefer the page's title, or title and subtitle for its URL slug
   extend FriendlyId
   friendly_id :slug_candidates
