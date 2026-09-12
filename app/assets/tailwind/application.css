@@ -1,1 +1,17 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/forms";
+@plugin "@tailwindcss/typography";
+
+/* Override Tailwind to show bullet points! (For Rail's Action Text) */
+@layer base {
+  ul {
+    @apply list-disc list-inside
+  }
+  ol {
+    @apply list-decimal list-inside
+  }
+}
+
+/* Use DaisyUI for Tailwind themes and components */
+@source not "./daisyui{,*}.mjs";
+@plugin "./daisyui.mjs";
