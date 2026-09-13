@@ -19,3 +19,33 @@ Page:
   versions:
     ForeignKeyTypeChecker:
       enabled: false
+
+# Ignore false positives from the Devise gem
+User:
+  index_users_on_username:
+    UniqueIndexChecker:
+      enabled: false
+  username+organization_id:
+    MissingUniqueIndexChecker:
+      enabled: false
+  index_users_on_slug:
+    UniqueIndexChecker:
+      enabled: false
+  index_users_on_confirmation_token:
+    UniqueIndexChecker:
+      enabled: false
+  index_users_on_reset_password_token:
+    UniqueIndexChecker:
+      enabled: false
+  index_users_on_unlock_token:
+    UniqueIndexChecker:
+      enabled: false
+  email:
+    ColumnPresenceChecker:
+      enabled: false
+  slug:
+    NullConstraintChecker:
+      enabled: false
+  versions:
+    ForeignKeyTypeChecker:
+      enabled: false

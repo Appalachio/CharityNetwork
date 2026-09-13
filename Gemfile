@@ -49,6 +49,9 @@ gem "paper_trail", "~> 17.0"
 # Use FriendlyID to customize a models URL slug
 gem "friendly_id", "~> 5.7"
 
+# Devise adds user authentication
+gem "devise", "~> 5.0"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", "~> 1.11", platforms: %i[ mri windows ], require: "debug/prelude"
