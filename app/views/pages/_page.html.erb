@@ -8,11 +8,10 @@
     <%= page.subtitle %>
   </div>
   <div>
-    <strong class="block font-medium mb-1">Body:</strong>
-    <%= page.body %>
-  </div>
-  <div>
     <strong class="block font-medium mb-1">Published at:</strong>
     <%= page.published_at %>
+  </div>
+  <div class="prose lg:prose-xl">
+    <%= page.body %>
   </div>
 </div>
