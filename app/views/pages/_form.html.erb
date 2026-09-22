@@ -12,28 +12,31 @@
   <% end %>
 
   <div class="my-5">
-    <%= form.label :title %>
-    <%= form.textarea :title, rows: 4, class: [ "block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", { "border-gray-400 focus:outline-blue-600": page.errors[:title].none?, "border-red-400 focus:outline-red-600": page.errors[:title].any? } ] %>
+    <%= form.label :title, class: "fieldset-legend" %>
+    <%= form.textarea :title, rows: 1, class: [ "cn-form-input", { "cn-form-input-no-errors": page.errors[:title].none?, "cn-form-input-no-errors": page.errors[:title].any? } ] %>
   </div>
 
   <div class="my-5">
-    <%= form.label :subtitle %>
-    <%= form.textarea :subtitle, rows: 4, class: [ "block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", { "border-gray-400 focus:outline-blue-600": page.errors[:subtitle].none?, "border-red-400 focus:outline-red-600": page.errors[:subtitle].any? } ] %>
+    <%= form.label :subtitle, "Subtitle (optional)", class: "fieldset-legend" %>
+    <%= form.textarea :subtitle, rows: 1, class: [ "cn-form-input", { "cn-form-input-no-errors": page.errors[:subtitle].none?, "cn-form-input-errors": page.errors[:subtitle].any? } ] %>
   </div>
 
   <div class="my-5">
-    <%= form.label :body %>
-    <%= form.rich_textarea :body, class: [ "block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", { "border-gray-400 focus:outline-blue-600": page.errors[:body].none?, "border-red-400 focus:outline-red-600": page.errors[:body].any? } ] %>
+    <%= form.label :body, class: "fieldset-legend" %>
+    <%= form.rich_textarea :body, class: [ "cn-form-input", { "cn-form-input-no-errors": page.errors[:body].none?, "cn-form-input-errors": page.errors[:body].any? } ] %>
   </div>
 
   <div class="my-5">
-    <%= form.label :page_attachments %>
-    <%= form.file_field :page_attachments, multiple: true, class: [ "block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", { "border-gray-400 focus:outline-blue-600": page.errors[:page_attachments].none?, "border-red-400 focus:outline-red-600": page.errors[:page_attachments].any? } ] %>
+    <%= form.label :page_attachments, "Page attachments (optional)", class: "fieldset-legend" %>
+    <%= form.file_field :page_attachments, multiple: true, class: [ "block shadow-sm file-input w-full", { "cn-form-input-no-errors": page.errors[:page_attachments].none?, "cn-form-input-errors": page.errors[:page_attachments].any? } ] %>
   </div>
 
   <div class="my-5">
-    <%= form.label :published_at %>
-    <%= form.datetime_field :published_at, class: [ "block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", { "border-gray-400 focus:outline-blue-600": page.errors[:published_at].none?, "border-red-400 focus:outline-red-600": page.errors[:published_at].any? } ] %>
+    <%= form.label :published_at, class: "fieldset-legend" %>
+    <p class="label">The date and time (in UTC timezone) that this page will be visible to everyone.<p>
+    <p class="label">Leave blank to keep this page private indefinitely.</p>
+    <p class="label">Set to a date and time in the past to make this page public now.</p>
+    <%= form.datetime_field :published_at, class: [ "cn-form-input", { "cn-form-input-no-errors": page.errors[:published_at].none?, "cn-form-input-errors": page.errors[:published_at].any? } ] %>
   </div>
 
   <div class="inline">
