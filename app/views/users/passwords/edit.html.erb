@@ -1,25 +1,28 @@
-<h2>Change your password</h2>
+<div class="md:w-2/3 w-full">
+  <h2 class="font-bold text-2xl">Change Password</h2>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
-  <%= f.hidden_field :reset_password_token %>
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "users/shared/error_messages", resource: resource %>
+    <%= f.hidden_field :reset_password_token %>
 
-  <div class="field">
-    <p><%= f.label :password, "New password" %></p>
-    <% if @minimum_password_length %>
-      <p><em>(<%= @minimum_password_length %> characters minimum)</em></p>
-    <% end %>
-    <p><%= f.password_field :password, autofocus: true, autocomplete: "new-password" %></p>
-  </div>
+    <div class="my-5">
+      <%= f.label :password, "New password", class: "fieldset-legend" %>
+      <% if @minimum_password_length %>
+        <p class="label"><em>(<%= @minimum_password_length %> characters minimum)</em></p>
+      <% end %>
+      <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: [ "cn-form-input", { "cn-form-input-no-errors": resource.errors[:password].none?, "cn-form-input-errors": resource.errors[:password].any? } ] %>
+    </div>
 
-  <div class="field">
-    <p><%= f.label :password_confirmation, "Confirm new password" %></p>
-    <p><%= f.password_field :password_confirmation, autocomplete: "new-password" %></p>
-  </div>
+    <div class="my-5">
+      <%= f.label :password_confirmation, "Confirm new password", class: "fieldset-legend" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: [ "cn-form-input", { "cn-form-input-no-errors": resource.errors[:password_confirmation].none?, "cn-form-input-errors": resource.errors[:password_confirmation].any? } ] %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "Change my password" %>
-  </div>
-<% end %>
+    <div class="inline">
+      <%= f.submit "Change Password", class: "btn btn-primary" %>
+      <%= link_to "Back", :back, class: "btn btn-neutral" %>
+    </div>
+  <% end %>
 
-<%= render "users/shared/links" %>
+  <%= render "users/shared/links" %>
+</div>

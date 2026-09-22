@@ -4,11 +4,14 @@
 # Database name: primary
 #
 #  id                     :bigint           not null, primary key
+#  admin                  :boolean          default(FALSE), not null
+#  archived_at            :datetime
 #  confirmation_sent_at   :datetime
 #  confirmation_token     :text
 #  confirmed_at           :datetime
 #  current_sign_in_at     :datetime
 #  current_sign_in_ip     :text
+#  display_name           :text             not null
 #  email                  :text             default(""), not null
 #  encrypted_password     :text             default(""), not null
 #  failed_attempts        :integer          default(0), not null
@@ -19,8 +22,10 @@
 #  reset_password_sent_at :datetime
 #  reset_password_token   :text
 #  sign_in_count          :integer          default(0), not null
+#  slug                   :text             not null
 #  unconfirmed_email      :text
 #  unlock_token           :text
+#  username               :text             not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
@@ -29,6 +34,7 @@
 #  index_users_on_confirmation_token    (confirmation_token) UNIQUE
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#  index_users_on_slug                  (slug) UNIQUE
 #  index_users_on_unlock_token          (unlock_token) UNIQUE
 #
 FactoryBot.define do

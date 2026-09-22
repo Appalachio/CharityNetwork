@@ -77,12 +77,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_13_005327) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.boolean "admin", default: false, null: false
+    t.datetime "archived_at"
     t.datetime "confirmation_sent_at"
     t.text "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "created_at", null: false
     t.datetime "current_sign_in_at"
     t.text "current_sign_in_ip"
+    t.text "display_name", null: false
     t.text "email", default: "", null: false
     t.text "encrypted_password", default: "", null: false
     t.integer "failed_attempts", default: 0, null: false
@@ -93,12 +96,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_13_005327) do
     t.datetime "reset_password_sent_at"
     t.text "reset_password_token"
     t.integer "sign_in_count", default: 0, null: false
+    t.text "slug", null: false
     t.text "unconfirmed_email"
     t.text "unlock_token"
     t.datetime "updated_at", null: false
+    t.text "username", null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["slug"], name: "index_users_on_slug", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 

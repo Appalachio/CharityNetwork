@@ -1,16 +1,22 @@
-<h2>Forgot your password?</h2>
+<div class="md:w-2/3 w-full">
+  <h2 class="font-bold text-2xl">Forgot your password?</h2>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
 
-  <div class="field">
-    <p><%= f.label :email %></p>
-    <p><%= f.email_field :email, autofocus: true, autocomplete: "email" %></p>
-  </div>
+    <p>Did you forget the password to your account? Enter your email address below, and we will email you a special link so you can create a new password.</p>
 
-  <div class="actions">
-    <%= f.submit "Send me password reset instructions" %>
-  </div>
-<% end %>
+    <%= render "users/shared/error_messages", resource: resource %>
 
-<%= render "users/shared/links" %>
+    <div class="my-5">
+      <p><%= f.label :email, class: "fieldset-legend" %></p>
+      <p><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "cn-form-input cn-form-input-no-errors" %></p>
+    </div>
+
+    <div class="inline">
+      <%= f.submit "Send Instructions", class: "btn btn-primary" %>
+      <%= link_to "Back", :back, class: "btn btn-neutral" %>
+    </div>
+  <% end %>
+
+  <%= render "users/shared/links" %>
+</div>

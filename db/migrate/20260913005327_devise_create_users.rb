@@ -32,6 +32,15 @@ class DeviseCreateUsers < ActiveRecord::Migration[8.1]
       t.text :unlock_token # Only if unlock strategy is :email or :both
       t.datetime :locked_at
 
+      # CharityNetwork attributes
+      t.text :display_name, null: false
+      t.text :username, null: false
+
+      t.text :slug, null: false
+      t.boolean :admin, null: false, default: false
+
+      t.datetime :archived_at
+
       t.timestamps null: false
     end
 
@@ -39,5 +48,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[8.1]
     add_index :users, :reset_password_token, unique: true
     add_index :users, :confirmation_token,   unique: true
     add_index :users, :unlock_token,         unique: true
+
+    add_index :users, :slug, unique: true
   end
 end
