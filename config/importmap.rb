@@ -9,7 +9,7 @@ pin "trix"
 pin "@rails/actiontext", to: "actiontext.esm.js"
 pin "@tailwindcss/typography", to: "@tailwindcss--typography.js" # @0.5.20
 pin "cssesc" # @3.0.0
-pin "postcss-selector-parser" # @6.0.10
+pin "postcss-selector-parser" # @7.1.6
 pin "tailwindcss/colors", to: "tailwindcss--colors.js" # @4.3.3
 pin "tailwindcss/plugin", to: "tailwindcss--plugin.js" # @4.3.3
 pin "util-deprecate" # @1.0.2
