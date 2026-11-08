@@ -41,9 +41,9 @@ RSpec.describe "/pages", type: :request do
   end
 
   describe "GET /new" do
-    it "renders a successful response" do
+    it "fails do to user not signed in" do
       get new_page_url
-      expect(response).to be_successful
+      expect(response).to redirect_to(root_path)
     end
   end
 

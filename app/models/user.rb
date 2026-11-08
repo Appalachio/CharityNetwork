@@ -38,10 +38,12 @@
 #  index_users_on_unlock_token          (unlock_token) UNIQUE
 #
 class User < ApplicationRecord
-  # Include default devise user authentication modules
+  # Include Devise user authentication modules
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :confirmable, :lockable, :timeoutable, :trackable
+
+  has_many :pages, dependent: :destroy
 
   has_rich_text :profile
   has_one_attached :profile_picture

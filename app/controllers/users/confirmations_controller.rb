@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Users::ConfirmationsController < Devise::ConfirmationsController
+  before_action :skip_user_authorization
+
   # GET /resource/confirmation/new
   # def new
   #   super
@@ -16,7 +18,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
   #   super
   # end
 
-  # protected
+  protected
 
   # The path used after resending confirmation instructions.
   # def after_resending_confirmation_instructions_path_for(resource_name)
@@ -27,4 +29,9 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
   # def after_confirmation_path_for(resource_name, resource)
   #   super(resource_name, resource)
   # end
+
+  # Never perform user authorization during user authentication!
+  def skip_user_authorization
+    skip_verify_authorized!
+  end
 end

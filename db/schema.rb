@@ -16,34 +16,34 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_13_005327) do
   enable_extension "pgcrypto"
 
   create_table "action_text_rich_texts", force: :cascade do |t|
-    t.text "body"
-    t.timestamp "created_at", precision: 6, null: false
     t.string "name", null: false
-    t.bigint "record_id", null: false
+    t.text "body"
     t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.timestamp "created_at", precision: 6, null: false
     t.timestamp "updated_at", precision: 6, null: false
     t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
   end
 
   create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
-    t.string "name", null: false
-    t.bigint "record_id", null: false
-    t.string "record_type", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
   create_table "active_storage_blobs", force: :cascade do |t|
-    t.bigint "byte_size", null: false
-    t.string "checksum"
-    t.string "content_type"
-    t.datetime "created_at", null: false
-    t.string "filename", null: false
     t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
     t.text "metadata"
     t.string "service_name", null: false
+    t.bigint "byte_size", null: false
+    t.string "checksum"
+    t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
@@ -54,53 +54,55 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_13_005327) do
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
-    t.datetime "created_at"
-    t.text "scope"
     t.text "slug", null: false
     t.bigint "sluggable_id", null: false
     t.text "sluggable_type"
+    t.text "scope"
+    t.datetime "created_at"
     t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
   create_table "pages", force: :cascade do |t|
+    t.text "title", null: false
+    t.text "subtitle"
+    t.text "slug", null: false
+    t.bigint "user_id", null: false
+    t.datetime "published_at"
     t.datetime "archived_at"
     t.datetime "created_at", null: false
-    t.datetime "published_at"
-    t.text "slug", null: false
-    t.text "subtitle"
-    t.text "title", null: false
     t.datetime "updated_at", null: false
     t.index ["slug"], name: "index_pages_on_slug", unique: true
     t.index ["title"], name: "index_pages_on_title"
+    t.index ["user_id"], name: "index_pages_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.boolean "admin", default: false, null: false
-    t.datetime "archived_at"
-    t.datetime "confirmation_sent_at"
-    t.text "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "created_at", null: false
-    t.datetime "current_sign_in_at"
-    t.text "current_sign_in_ip"
-    t.text "display_name", null: false
     t.text "email", default: "", null: false
     t.text "encrypted_password", default: "", null: false
-    t.integer "failed_attempts", default: 0, null: false
-    t.datetime "last_sign_in_at"
-    t.text "last_sign_in_ip"
-    t.datetime "locked_at"
-    t.datetime "remember_created_at"
-    t.datetime "reset_password_sent_at"
     t.text "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
     t.integer "sign_in_count", default: 0, null: false
-    t.text "slug", null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.text "current_sign_in_ip"
+    t.text "last_sign_in_ip"
+    t.text "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
     t.text "unconfirmed_email"
+    t.integer "failed_attempts", default: 0, null: false
     t.text "unlock_token"
-    t.datetime "updated_at", null: false
+    t.datetime "locked_at"
+    t.text "display_name", null: false
     t.text "username", null: false
+    t.text "slug", null: false
+    t.boolean "admin", default: false, null: false
+    t.datetime "archived_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -109,16 +111,17 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_13_005327) do
   end
 
   create_table "versions", force: :cascade do |t|
+    t.bigint "whodunnit"
     t.datetime "created_at"
-    t.text "event", null: false
     t.bigint "item_id", null: false
     t.text "item_type", null: false
+    t.text "event", null: false
     t.text "object"
     t.text "object_changes"
-    t.bigint "whodunnit"
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "pages", "users"
 end

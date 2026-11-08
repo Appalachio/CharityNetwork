@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Users::PasswordsController < Devise::PasswordsController
+  before_action :skip_user_authorization
+
   # GET /resource/password/new
   # def new
   #   super
@@ -21,7 +23,7 @@ class Users::PasswordsController < Devise::PasswordsController
   #   super
   # end
 
-  # protected
+  protected
 
   # def after_resetting_password_path_for(resource)
   #   super(resource)
@@ -31,4 +33,9 @@ class Users::PasswordsController < Devise::PasswordsController
   # def after_sending_reset_password_instructions_path_for(resource_name)
   #   super(resource_name)
   # end
+
+  # Never perform user authorization during user authentication!
+  def skip_user_authorization
+    skip_verify_authorized!
+  end
 end

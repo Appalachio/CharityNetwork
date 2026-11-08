@@ -1,14 +1,20 @@
 class PagesController < ApplicationController
-  before_action :set_page, only: %i[ show edit update destroy ]
+  before_action :set_page, only: %i[ show edit update destroy archive restore]
 
   # GET /pages or /pages.json
   def index
+    # Check user permissions
+    authorize!
+
     # Only show pages that have not been archived and are published
     @pages = Page.active.published
   end
 
   # GET /pages/1 or /pages/1.json
   def show
+    # Check user permissions
+    authorize! @page
+
     # Redirect to the latest version of the page slug if an old slug was used
     if request.path != page_path(@page)
       redirect_to(@page, status: :moved_permanently, notice: "The page you requested (#{request.url}) is now accessible at this current url (#{page_url(@page)}). You have been automatically redirected")
@@ -18,10 +24,16 @@ class PagesController < ApplicationController
   # GET /pages/new
   def new
     @page = Page.new
+
+    # Check user permissions
+    authorize! @page
   end
 
   # GET /pages/1/edit
   def edit
+    # Check user permissions
+    authorize! @page
+
     # Redirect to the latest version of the page slug if an old slug was used
     if request.path != edit_page_path(@page)
       redirect_to(edit_page_path(@page), status: :moved_permanently, notice: "The page you requested (#{request.url}) is now accessible at this current url (#{page_url(@page)}). You have been automatically redirected")
@@ -31,6 +43,11 @@ class PagesController < ApplicationController
   # POST /pages or /pages.json
   def create
     @page = Page.new(page_params)
+
+    # Check user permissions
+    authorize! @page
+
+    @page.user = current_user
 
     respond_to do |format|
       if @page.save
@@ -45,6 +62,9 @@ class PagesController < ApplicationController
 
   # PATCH/PUT /pages/1 or /pages/1.json
   def update
+    # Check user permissions
+    authorize! @page
+
     respond_to do |format|
       if @page.update(page_params)
         format.html { redirect_to @page, notice: "Page was successfully updated.", status: :see_other }
@@ -58,6 +78,9 @@ class PagesController < ApplicationController
 
   # DELETE /pages/1 or /pages/1.json
   def destroy
+    # Check user permissions
+    authorize! @page
+
     @page.destroy!
 
     respond_to do |format|
@@ -69,6 +92,9 @@ class PagesController < ApplicationController
   # PUT /pages/1/archive or /pages/1/archive.json
   # Soft deletes the page
   def archive
+    # Check user permissions
+    authorize! @page
+
     @page.archive
 
     respond_to do |format|
@@ -80,6 +106,9 @@ class PagesController < ApplicationController
   # PUT /pages/1/restore or /pages/1/restore.json
   # Restores the page from archive
   def restore
+    # Check user permissions
+    authorize! @page
+
     @page.restore
 
     respond_to do |format|
